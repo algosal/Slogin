@@ -1,66 +1,105 @@
 import { StatusBar } from "expo-status-bar";
-import React, { Component } from "react";
-import { StyleSheet, View, Text, Animated, TouchableWithoutFeedback, Button, Platform } from "react-native";
-import {TextInput, List} from 'react-native-paper';
+import React from "react";
+import { StyleSheet, View, Text, Button, } from "react-native";
+import { TextInput } from 'react-native-paper';
+import authenticate from "../services/authentication";
 
 export default function Thought(props) {
-    
-  let [userText,setUserText]=React.useState(null); 
-  let [passwordText,setPasswordText]=React.useState(null); 
 
-  function parentStateSet(){
-    if(passwordText=="salman"){
-        props.setPer(true)
-        }else{
-            alert("The Password Enetered is Incorrect");
-        }
+  let [userText, setUserText] = React.useState(null);
+  let [passwordText, setPasswordText] = React.useState(null);
+
+  async function parentStateSet() {
+    let data = await authenticate(userText, passwordText);
+    if (userText == null || passwordText == null) {
+      alert("Enter the data ");
     }
+    else if (data == 0) {
+      props.setPer(true);
+    } else {
+      alert("The Username or Password Enetered is Incorrect");
+    }
+  }
 
 
   return (
 
-     <View style={styles.container}>
-      <Text style={{width: 350, paddingTop:100, fontSize:50  }}>Log In Focus</Text>
+    <View style={styles.container}>
 
-      <View style={{width: 350, paddingTop:30, }}>
-      <TextInput
-        label="username"
-        value={userText}
-        onChangeText={text => setUserText(text)}
-        style={{margin:5,}}
-      />
+      
+                    <View style={[styles.shadowProp, styles.box]} >
+                      <View style={styles.mylogotext}>
+                        <Text style={styles.mylogotext}>S</Text>
+                      </View>
+                    </View>
 
-    <TextInput
-        label="password"
-        secureTextEntry={true}
-        value={passwordText}
-        onChangeText={text => setPasswordText(text)}
-        style={{margin:5,}}
-      />
+      <Text style={{ width: 350, paddingTop: 100, fontSize: 50, color:'white'}}>Log In Focus</Text>
 
- <View style={{top:20,}}>
+      <View style={{ width: 350, paddingTop: 30, }}>
+        <TextInput
+          label="username"
+          value={userText}
+          onChangeText={text => setUserText(text)}
+          style={{ margin: 10, }}
+        />
 
-<Button
-title="Log In"
-onPress={parentStateSet}
-/>
-</View>
+        <TextInput
+          label="password"
+          secureTextEntry={true}
+          value={passwordText}
+          onChangeText={text => setPasswordText(text)}
+          style={{ margin: 10, }}
+        />
+
+        <View style={{ top: 10, left:200, width:140,  }}>
+          <Button
+            title="Log In"
+            onPress={parentStateSet}
+          /></View>
+          
+      </View>
     </View>
-    </View>
 
-  ); 
+  );
 
 }
 
 let styles = StyleSheet.create({
-  container:{
-    flex: 1, 
-    flexDirection:'column', 
-    alignItems:'center',
-    textAlignVertical:'center', 
+  container: {
+    flex: 1,
+    flexDirection: 'column',
+    alignItems: 'center',
+    textAlignVertical: 'center',
     color: 'maroon',
-    backgroundColor: 'white', 
-    paddingTop : StatusBar.height, 
+    backgroundColor: 'black',
+    paddingTop: StatusBar.height,
   },
-
+  box: {
+    width: 150,
+    height: 150,
+    borderRadius: 50, 
+    borderWidth: 5, 
+    top:50, 
+    borderBottomColor:'yellow',
+    borderLeftColor: 'green', 
+    borderRightColor: 'red',
+    borderTopColor:'purple', 
+    backgroundColor: "pink",
+  },
+  mylogotext:{
+    fontSize:50,
+    top:0,
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    textAlign:"center", 
+    color: "green", 
+  },
+  shadowProp: {
+    shadowColor: 'white',
+    shadowOffset: {width: 0, height: 20},
+    shadowOpacity: .8,
+    shadowRadius: 100,
+  }, 
+ 
 });

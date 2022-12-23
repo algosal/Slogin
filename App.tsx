@@ -9,8 +9,8 @@ export default function App() {
   let [permissionsByServer, setPermissionsByServer] = useState(null);
   return (
     <View style={styles.container}>
-        {(permissionsByServer==true)?<Thought/>:<Login setPer={setPermissionsByServer}/>}
-
+        {(permissionsByServer==true)
+        ?<Thought unsetPer={setPermissionsByServer}/>:<Login setPer={setPermissionsByServer}/>}
         <StatusBar style="auto" />
     </View>
   );
@@ -19,8 +19,9 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: 'black',
     alignItems: 'center',
     justifyContent: 'center',
+    color:'white',     
   },
 });
