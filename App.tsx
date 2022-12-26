@@ -5,13 +5,23 @@ import Thought from './components/thoughts';
 import Login from './components/login'; 
 
 
+/**
+ * 
+ * @returns 
+ * the circumstances I am in
+ * problem endangerment level right now
+
+ */
+
 export default function App() {
   let [permissionsByServer, setPermissionsByServer] = useState(null);
+  let [userName, setUserName] = useState(null);
+
   return (
     <View style={styles.container}>
         {(permissionsByServer==true)
-        ?<Thought unsetPer={setPermissionsByServer}/>:<Login setPer={setPermissionsByServer}/>}
-        <StatusBar style="auto" />
+        ?<Thought unsetPer={setPermissionsByServer} user={userName}/>:<Login setPer={setPermissionsByServer} setUser={setUserName}/>}
+        <StatusBar style="auto"/>
     </View>
   );
 }

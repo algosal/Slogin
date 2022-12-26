@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "slogin",
+    "name": "Thoughts",
     "slug": "slogin",
-    "version": "1.0.0",
+    "version": "1.2.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -25,7 +25,7 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       },
-      "package": "us.salmansaeed.slogin"
+      "package": "us.salmansaeed.focus"
     },
     "web": {
       "favicon": "./assets/favicon.png"
